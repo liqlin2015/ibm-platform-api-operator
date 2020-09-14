@@ -87,7 +87,6 @@ metadata:
     repository: https://github.com/IBM/ibm-platform-api-operator
     support: IBM
   name: ibm-platform-api-operator.v3.7.0
-  namespace: ibm-common-services
 spec:
   apiservicedefinitions: {}
   customresourcedefinitions:
@@ -232,13 +231,26 @@ spec:
           resources:
           - customresourcedefinitions
           verbs:
-          - '*'
+          - create
+          - get
+          - list
+          - watch
         - apiGroups:
-          - certmanager.k8s.io
+          - apiextensions.k8s.io
           resources:
-          - clusterissuers
+          - customresourcedefinitions
+          resourceNames:
+          - passwordrules.icp.ibm.com
           verbs:
-          - use
+          - delete
+          - update
+          - patch 
+        # - apiGroups:
+        #   - certmanager.k8s.io
+        #   resources:
+        #   - clusterissuers
+        #   verbs:
+        #   - use
         - apiGroups:
           - rbac.authorization.k8s.io
           resources:
@@ -248,18 +260,55 @@ spec:
           - rolebindings
           verbs:
           - create
-          - delete
           - get
           - list
-          - patch
-          - update
           - watch
         - apiGroups:
-          - policy
+          - rbac.authorization.k8s.io
           resources:
-          - podsecuritypolicies
+          - clusterroles
+          resourceNames:
+          - ibm-platform-api-operand
           verbs:
-          - '*'
+          - delete
+          - update
+          - patch
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - clusterrolebindings
+          resourceNames:
+          - ibm-platform-api-operand
+          verbs:
+          - delete
+          - update
+          - patch
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - roles
+          resourceNames:
+          - ibm-platform-api-operand
+          verbs:
+          - delete
+          - update
+          - patch
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - rolebindings
+          resourceNames:
+          - ibm-platform-api-operand
+          verbs:
+          - delete
+          - update
+          - patch
+        # - apiGroups:
+        #   - policy
+        #   resources:
+        #   - podsecuritypolicies
+        #   verbs:
+        #   - '*'
         - apiGroups:
           - security.openshift.io
           resourceNames:

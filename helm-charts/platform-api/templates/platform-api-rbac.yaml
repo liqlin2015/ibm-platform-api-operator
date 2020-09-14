@@ -97,35 +97,27 @@ rules:
   - serviceaccounts 
   verbs:
   - '*'
-- apiGroups:
-  - policy
-  resources:
-  - podsecuritypolicies 
-  verbs:
-  - '*'
-- apiGroups:
-  - rbac.authorization.k8s.io
-  resources:
-  - clusterroles
-  - clusterrolebindings
-  - roles
-  - rolebindings
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - security.openshift.io
-  resources:
-  - securitycontextconstraints
-  resourceNames:
-  - privileged
-  verbs:
-  - use
+# - apiGroups:
+#   - policy
+#   resources:
+#   - podsecuritypolicies
+#   verbs:
+#   - '*'
+# - apiGroups:
+#   - rbac.authorization.k8s.io
+#   resources:
+#   - clusterroles
+#   - clusterrolebindings
+#   - roles
+#   - rolebindings
+#   verbs:
+#   - create
+#   - delete
+#   - get
+#   - list
+#   - patch
+#   - update
+#   - watch
 - apiGroups:
   - security.openshift.io
   resources:

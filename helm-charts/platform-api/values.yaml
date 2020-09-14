@@ -37,7 +37,6 @@ platformApi:
     repository: quay.io/opencloudio/icp-platform-api@sha256:ff2488fc92da31eec787b60a6bad8231540720a2e71b33d7ec3ab1010a303f9f
     pullPolicy: IfNotPresent
   name: platform-api
-  namespace: "ibm-common-services"
   resources:
     limits:
       cpu: 500m
